@@ -10,12 +10,16 @@ import javax.persistence.PersistenceException;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import com.algaworks.curso.jpa2.modelo.Aluguel;
 import com.algaworks.curso.jpa2.modelo.Carro;
+import com.algaworks.curso.jpa2.modelo.util.TotalDeAlugueisPorCarro;
 import com.algaworks.curso.jpa2.service.NegocioException;
 import com.algaworks.curso.jpa2.util.jpa.Transactional;
 
@@ -79,6 +83,29 @@ public class CarroDAO implements Serializable {
 		criteriaSub.setProjection(Projections.property("carro"));
 		criteriaSub.add(Restrictions.isNotNull("carro"));
 		criteria.add(Property.forName("codigo").notIn(criteriaSub));
+		return criteria.list();
+	}
+
+	public List<TotalDeAlugueisPorCarro> buscarTotalAlugueisPorCarro() {
+		// TODO Auto-generated method stub
+		Session session = this.manager.unwrap(Session.class);
+		Criteria criteria = session.createCriteria(Carro.class);
+		
+	//crio alias primeiro
+//		crio inner join entre as entities do banco
+		
+		criteria.createAlias("alugueis", "a");
+		ProjectionList pl = Projections.projectionList()
+				.add(Projections.groupProperty("placa").as("placa"))
+				.add(Projections.groupProperty("a.codigo").as("totaldDeAlugueis"));
+		
+//		ordenando por ordem desc os total de alugues
+		
+		criteria.setProjection(pl)
+		.addOrder(Order.desc("totalDeAlugueis"))
+		.setResultTransformer(Transformers.aliasToBean(TotalDeAlugueisPorCarro.class));
+		
+	
 		return criteria.list();
 	}
 
