@@ -23,18 +23,18 @@ public class PesquisaCarroBean implements Serializable {
 
 	@Inject
 	CarroDAO carroDAO;
-
+	
 	private List<Carro> carros = new ArrayList<>();
-
+	
 	private LazyCarroDataModel lazyCarros;
-
+	
 	private Carro carroSelecionado;
 	private Carro carroSelecionadoParaExcluir;
-
+	
 	public List<Carro> getCarros() {
 		return carros;
 	}
-
+	
 	public void excluir() {
 		try {
 			carroDAO.excluir(carroSelecionadoParaExcluir);
@@ -48,31 +48,29 @@ public class PesquisaCarroBean implements Serializable {
 	public Carro getCarroSelecionado() {
 		return carroSelecionado;
 	}
-
 	public void setCarroSelecionado(Carro carroSelecionado) {
 		this.carroSelecionado = carroSelecionado;
-	}
-
-	@PostConstruct
-	public void inicializar() {
-		// carros = carroDAO.buscarTodos();
-		lazyCarros = new LazyCarroDataModel(carroDAO);
-	}
-
-	public void buscarCarroComAcessorios() {
-		carroSelecionado = carroDAO.buscarCarroComAcessorios(carroSelecionado.getCodigo());
-	}
-
-	public LazyCarroDataModel getLazyCarros() {
-		return lazyCarros;
 	}
 
 	public Carro getCarroSelecionadoParaExcluir() {
 		return carroSelecionadoParaExcluir;
 	}
-
 	public void setCarroSelecionadoParaExcluir(Carro carroSelecionadoParaExcluir) {
 		this.carroSelecionadoParaExcluir = carroSelecionadoParaExcluir;
+	}
+
+	@PostConstruct
+	public void inicializar() {
+		//carros = carroDAO.buscarTodos();
+		lazyCarros = new LazyCarroDataModel(carroDAO);
+	}
+	
+	public void buscarCarroComAcessorios() {
+		carroSelecionado = carroDAO.buscarCarroComAcessorios(carroSelecionado.getCodigo());
+	}
+	
+	public LazyCarroDataModel getLazyCarros() {
+		return lazyCarros;
 	}
 
 }

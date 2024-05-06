@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 public class Acessorio {
 
@@ -20,6 +22,7 @@ public class Acessorio {
 		this.codigo = codigo;
 	}
 	
+	@NotBlank(message="Descrição tem que ser informada!!")
 	public String getDescricao() {
 		return descricao;
 	}

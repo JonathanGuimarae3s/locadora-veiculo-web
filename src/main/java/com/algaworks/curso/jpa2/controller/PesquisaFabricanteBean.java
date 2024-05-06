@@ -22,15 +22,15 @@ public class PesquisaFabricanteBean implements Serializable {
 
 	@Inject
 	FabricanteDAO fabricanteDAO;
-	
+
 	private List<Fabricante> fabricantes = new ArrayList<>();
-	
+
 	private Fabricante fabricanteSelecionado;
-	
+
 	public List<Fabricante> getFabricantes() {
 		return fabricantes;
 	}
-	
+
 	public void excluir() {
 		try {
 			fabricanteDAO.excluir(fabricanteSelecionado);
@@ -44,10 +44,11 @@ public class PesquisaFabricanteBean implements Serializable {
 	public Fabricante getFabricanteSelecionado() {
 		return fabricanteSelecionado;
 	}
+
 	public void setFabricanteSelecionado(Fabricante fabricanteSelecionado) {
 		this.fabricanteSelecionado = fabricanteSelecionado;
 	}
-	
+
 	@PostConstruct
 	public void inicializar() {
 		fabricantes = fabricanteDAO.buscarTodos();

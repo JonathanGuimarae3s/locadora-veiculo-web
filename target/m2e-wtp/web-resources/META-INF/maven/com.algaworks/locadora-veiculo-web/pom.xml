@@ -119,19 +119,6 @@
 	</build>
 
 	<dependencies>
-		<!-- API, java.xml.bind module -->
-		<dependency>
-			<groupId>jakarta.xml.bind</groupId>
-			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>2.3.2</version>
-		</dependency>
-
-		<!-- Runtime, com.sun.xml.bind module -->
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.2</version>
-		</dependency>
 		<!-- Mojarra (Implementação JSF 2) -->
 		<dependency>
 			<groupId>org.glassfish</groupId>
@@ -203,6 +190,70 @@
 			<scope>compile</scope>
 		</dependency>
 
+		<!-- File Upload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- DBUnit -->
+		<dependency>
+			<groupId>org.dbunit</groupId>
+			<artifactId>dbunit</artifactId>
+			<version>2.4.9</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- Necessário para o DBUnit -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.5.6</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.5.6</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- jIntegrity -->
+		<dependency>
+			<groupId>com.jintegrity</groupId>
+			<artifactId>jintegrity</artifactId>
+			<version>0.1.2</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Imp´lementacao do beanValidation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.1.Final</version>
+			<scope>compile</scope>
+		</dependency>
+		<!-- API, java.xml.bind module -->
+		<dependency>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+
+		<!-- Runtime, com.sun.xml.bind module -->
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		<!-- Implementação do bean validation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.0.1.Final</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<!-- Repositorio PrimeFaces -->
@@ -219,6 +270,7 @@
 			<name>public-jboss</name>
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
+
 	</repositories>
 
 </project>
